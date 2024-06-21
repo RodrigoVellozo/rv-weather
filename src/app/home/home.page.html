@@ -1,20 +1,92 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header class="ion-no-border" mode="ios">
+  <ion-toolbar class="ion-padding-start ion-padding-end ion-padding-top">
+    <ion-icon name="menu-outline" slot="start"></ion-icon>
+    <ion-title class="ion-padding-top"> Weather </ion-title>
+    <span slot="end">
+      <ion-icon name="notifications-outline"></ion-icon>
+      <ion-badge>&nbsp;</ion-badge>
+    </span>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h4 class="location">Seoul, South, Korea</h4>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="main-info">
+    <img src="../../assets/cloudy.com.png" alt="partly_cloudy" />
+    <h5>Partly Cloudy</h5>
+    <h1>22°C</h1>
+  </div>
+
+  <div class="other-info ion-padding">
+    <ion-card class="ion-padding">
+      <div class="info">
+        <h5>Humidity</h5>
+        <h3>58%</h3>
+      </div>
+    </ion-card>
+
+    <ion-card class="ion-padding">
+      <div class="info">
+        <h5>Rain</h5>
+        <h3>10%</h3>
+      </div>
+    </ion-card>
+
+    <ion-card class="ion-padding">
+      <div class="info">
+        <h5>Feels like</h5>
+        <h3>5°</h3>
+      </div>
+    </ion-card>
+
+    <ion-card class="ion-padding">
+      <div class="info">
+        <h5>Humidity</h5>
+        <h3>58%</h3>
+      </div>
+    </ion-card>
+  </div>
+
+  <div class="hourly">
+    <h3 class="ion-padding-start">Sunday, Today</h3>
+
+    <div class="hourly-info ion-padding">
+      <div class="info">
+        <p>Now</p>
+        <img src="../../assets/cloudy.com.png" alt="">
+        <p>7°</p>
+      </div>
+      <div class="info">
+        <p>8 AM</p>
+        <img src="../../assets/cloudy.com.png" alt="">
+        <p>17°</p>
+      </div>
+      <div class="info">
+        <p>9 AM</p>
+        <img src="../../assets/cloudy.com.png" alt="">
+        <p>27°</p>
+      </div>
+      <div class="info">
+        <p>10 AM</p>
+        <img src="../../assets/cloudy.com.png" alt="">
+        <p>37°</p>
+      </div>
+      <div class="info">
+        <p>11 AM</p>
+        <img src="../../assets/cloudy.com.png" alt="">
+        <p>47°</p>
+      </div>
+      <div class="info">
+        <p>12 PM</p>
+        <img src="../../assets/cloudy.com.png" alt="">
+        <p>57°</p>
+      </div>
+      <div class="info">
+        <p>13 PM</p>
+        <img src="../../assets/cloudy.com.png" alt="">
+        <p>67°</p>
+      </div>
+    </div>
   </div>
 </ion-content>
