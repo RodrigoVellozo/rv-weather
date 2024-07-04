@@ -6,6 +6,8 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { homeInterceptor } from './app/core/services/interceptors/home.interceptor';
 
 if (environment.production) {
   enableProdMode();
@@ -16,5 +18,6 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideHttpClient(withInterceptors([homeInterceptor])),
   ],
 });

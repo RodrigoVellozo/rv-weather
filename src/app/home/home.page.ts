@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   IonBadge,
+  IonCard,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
   IonContent,
   IonHeader,
   IonIcon,
   IonTitle,
   IonToolbar,
-  IonCard
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { menuOutline, notificationsOutline } from 'ionicons/icons';
+import { WeatherService } from '../core/services/weather.service';
+import { LocationService } from '../core/services/location.service';
+import { map, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +25,10 @@ import { menuOutline, notificationsOutline } from 'ionicons/icons';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
+    CommonModule,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonCardHeader,
     IonBadge,
     IonHeader,
     IonToolbar,
@@ -24,11 +36,26 @@ import { menuOutline, notificationsOutline } from 'ionicons/icons';
     IonContent,
     IonIcon,
     IonBadge,
-    IonCard
+    IonCard,
   ],
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  public intervals: any;
+  public forecast: any;
+
+  private readonly _route = inject(ActivatedRoute);
+  private readonly _weatherService = inject(WeatherService);
+  private readonly _locationService = inject(LocationService);
+
   constructor() {
-    addIcons({menuOutline, notificationsOutline});
+    addIcons({ menuOutline, notificationsOutline });
+  }
+  
+  ngOnInit(): void {
+    this._route.data.pipe(
+      tap((data) => {
+        return this.intervals = data;
+      })
+    ).subscribe();
   }
 }

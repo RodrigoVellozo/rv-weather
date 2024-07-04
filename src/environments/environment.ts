@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiKey: 'hRie3U91ibFYyJIZHZ7gWzqsGkBqhUKV',
+  baseUrl:'https://api.tomorrow.io/v4'
 };
 
 /*
