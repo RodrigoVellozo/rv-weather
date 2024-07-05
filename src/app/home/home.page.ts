@@ -11,8 +11,7 @@ import {
   IonHeader,
   IonIcon,
   IonTitle,
-  IonToolbar,
-} from '@ionic/angular/standalone';
+  IonToolbar, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { menuOutline, notificationsOutline } from 'ionicons/icons';
 import { WeatherService } from '../core/services/weather.service';
@@ -24,7 +23,7 @@ import { map, switchMap, tap } from 'rxjs';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonLabel, IonItem, IonList, 
     CommonModule,
     IonCardSubtitle,
     IonCardTitle,
