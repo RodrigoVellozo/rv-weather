@@ -11,45 +11,73 @@
 
 <ion-content [fullscreen]="true">
   <!-- TITLE -->
-  <h4 class="location">Seoul, South, Korea</h4>
+  <h4 class="location">Mesquita, Rio de Janeiro</h4>
 
   <!-- PAINEL DE TEMPERATURA -->
   <div class="main-info">
-    <img src="../../assets/cloudy.com.png" alt="partly_cloudy" />
+    <img src="../../assets/icon/V1_icons/color/mostly_clear_day.svg" alt="partly_cloudy" />
     <h5>Partly Cloudy i</h5>
-    <h1>21 °C</h1>
-    <h2>
-      {{intervals[0].values.temperature}}
-    </h2>
+    <h1>28 °C</h1>
   </div>
 
   <!-- CARDS COM OS CORE LAYERS (TEMPERATURA, UMIDADE, VENTO ...) -->
-  <div class="other-info ion-padding">
-    <ion-card>
+  <div
+    style="
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      justify-items: center;
+    "
+  >
+    <ion-card style="width: 44%; text-align: center;">
+      <img
+        src="../../assets/icon/uv-index.png"
+        alt="uv_index"
+        width="50"
+        style="padding-top: 2rem;"
+      />
       <ion-card-header>
         <ion-card-title>UV Index</ion-card-title>
-        <ion-card-subtitle>0</ion-card-subtitle>
+        <ion-card-subtitle>Moderate</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
-    <ion-card>
+    <ion-card style="width: 44%; text-align: center;">
+      <img
+        src="../../assets/icon/humidity-1.png"
+        alt="humidity"
+        width="50"
+        style="padding-top: 2rem;"
+      />
       <ion-card-header>
         <ion-card-title>Humidity</ion-card-title>
-        <ion-card-subtitle>0</ion-card-subtitle>
+        <ion-card-subtitle>47%</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
-    <ion-card>
+    <ion-card style="width: 44%; text-align: center;">
+      <img
+        src="../../assets/icon/feels-like.png"
+        alt="feels-like"
+        width="50"
+        style="padding-top: 2rem;"
+      />
       <ion-card-header>
         <ion-card-title>Feels Like</ion-card-title>
-        <ion-card-subtitle>0</ion-card-subtitle>
+        <ion-card-subtitle>29 °C</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
-    <ion-card>
+    <ion-card style="width: 44%; text-align: center;">
+      <img
+        src="../../assets/icon/wind.png"
+        alt="wind"
+        width="50"
+        style="padding-top: 2rem;"
+      />
       <ion-card-header>
         <ion-card-title>Wind</ion-card-title>
-        <ion-card-subtitle>0.88 km/h</ion-card-subtitle>
+        <ion-card-subtitle>3 km/h</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
@@ -83,10 +111,15 @@
     </ion-card> -->
   </div>
 
-
   <!-- 7 DAYS FORECAST -->
-  <div class="other-info ion-padding">
+  <div>
     <ion-card class="ion-padding">
+      <div class="info">
+        <h5>Today</h5>
+      </div>
+    </ion-card>
+
+    <!-- <ion-card class="ion-padding">
       <div class="info">
         <h5>Today</h5>
       </div>
@@ -126,8 +159,8 @@
       <div class="info">
         <h5>Thu 27</h5>
       </div>
-    </ion-card>
-  </div> 
+    </ion-card> -->
+  </div>
 
   <!-- TEMPERATURA POR HORA -->
   <div class="hourly">
@@ -136,37 +169,37 @@
     <div class="hourly-info ion-padding">
       <div class="info">
         <p>Now</p>
-        <img src="../../assets/cloudy.com.png" alt="">
+        <img src="../../assets/cloudy.com.png" alt="" />
         <p>7°</p>
       </div>
       <div class="info">
         <p>8 AM</p>
-        <img src="../../assets/cloudy.com.png" alt="">
+        <img src="../../assets/cloudy.com.png" alt="" />
         <p>17°</p>
       </div>
       <div class="info">
         <p>9 AM</p>
-        <img src="../../assets/cloudy.com.png" alt="">
+        <img src="../../assets/cloudy.com.png" alt="" />
         <p>27°</p>
       </div>
       <div class="info">
         <p>10 AM</p>
-        <img src="../../assets/cloudy.com.png" alt="">
+        <img src="../../assets/cloudy.com.png" alt="" />
         <p>37°</p>
       </div>
       <div class="info">
         <p>11 AM</p>
-        <img src="../../assets/cloudy.com.png" alt="">
+        <img src="../../assets/cloudy.com.png" alt="" />
         <p>47°</p>
       </div>
       <div class="info">
         <p>12 PM</p>
-        <img src="../../assets/cloudy.com.png" alt="">
+        <img src="../../assets/cloudy.com.png" alt="" />
         <p>57°</p>
       </div>
       <div class="info">
         <p>13 PM</p>
-        <img src="../../assets/cloudy.com.png" alt="">
+        <img src="../../assets/cloudy.com.png" alt="" />
         <p>67°</p>
       </div>
     </div>
