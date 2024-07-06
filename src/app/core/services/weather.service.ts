@@ -1,9 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { map, tap } from 'rxjs';
+import {
+  tap
+} from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LocationService } from './location.service';
+import { RealtimeWeather } from '../models/weather.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,29 +13,26 @@ import { LocationService } from './location.service';
 export class WeatherService {
   constructor(
     private _http: HttpClient,
-    private _locationService: LocationService
   ) {}
 
   public fetchTimelinesData(coordinates?: any) {
-    let params = `location=${coordinates}`;
+    let params = `location=${localStorage.getItem('position')}`;
     params += `&timesteps=1h`;
     params += `&units=metric`;
-    // params += `&startTime=${new Date().toDateString()}`;
-    params += `&endTime=${moment().add(2, 'hours').toISOString()}`;
+    params += `&endTime=${moment().add(1, 'hours').toISOString()}`;
     params += `&fields=windDirection&fields=humidity&fields=temperature&fields=temperatureApparent&fields=windSpeed&fields=uvIndex`;
     params += `&apikey=${environment.apiKey}`;
 
-    return this._http
-      .get<any>(`${environment.baseUrl}/timelines?${params}`)
-      .pipe(map((res) => res.data.timelines[0].intervals));
+    return this._http.get<any>(`${environment.baseUrl}/timelines?${params}`).pipe(
+      tap(res=>console.log('foi mesmo:', res))
+    );
   }
 
-  public fetchForecastData(coordinates?: any) {
-    let params = `location=${coordinates}`;
-    params += `&apikey=${environment.apiKey}`;
+  public realtimeWeather (){
+    // https://api.tomorrow.io/v4/weather/realtime?location=toronto&apikey=hRie3U91ibFYyJIZHZ7gWzqsGkBqhUKV', options)
+    let params = `location=${localStorage.getItem('position')}`;
+    params += `&apikey=${environment.apiKey}`
     
-    return this._http
-      .get<any>(`${environment.baseUrl}/weather/forecast?${params}`)
-      .pipe(map((res) => res.data));
-  }
+    return this._http.get<RealtimeWeather>(`${environment.baseUrl}/weather/realtime?${params}`);
+  } 
 }

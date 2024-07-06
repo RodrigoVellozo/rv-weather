@@ -1,8 +1,5 @@
-export interface WeatherData {
-  humidity: number;
-  temperature: number;
-  temperatureApparent:number;
-  uvIndex: number;
-  windDirection: number;
-  windSpeed: number;
+import { RealtimeWeatherData } from "./realtimeWeatherData";
+export interface RealtimeWeather {
+  data: RealtimeWeatherData;
+  location: Location;
 }

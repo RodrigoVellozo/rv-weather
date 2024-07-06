@@ -16,7 +16,8 @@ import { addIcons } from 'ionicons';
 import { menuOutline, notificationsOutline } from 'ionicons/icons';
 import { WeatherService } from '../core/services/weather.service';
 import { LocationService } from '../core/services/location.service';
-import { map, switchMap, tap } from 'rxjs';
+import { Observable, map, switchMap, tap } from 'rxjs';
+import { RealtimeWeather } from '../core/models/weather.model';
 
 @Component({
   selector: 'app-home',
@@ -39,22 +40,19 @@ import { map, switchMap, tap } from 'rxjs';
   ],
 })
 export class HomePage implements OnInit {
-  public intervals: any;
-  public forecast: any;
-
   private readonly _route = inject(ActivatedRoute);
   private readonly _weatherService = inject(WeatherService);
-  private readonly _locationService = inject(LocationService);
+  
+  public intervals: any;
+  public forecast: any;
+  
+  public realtimeWeather$ = this._weatherService.realtimeWeather();
 
   constructor() {
     addIcons({ menuOutline, notificationsOutline });
   }
   
   ngOnInit(): void {
-    this._route.data.pipe(
-      tap((data) => {
-        return this.intervals = data;
-      })
-    ).subscribe();
+    console.log()
   }
 }

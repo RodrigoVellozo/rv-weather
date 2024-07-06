@@ -9,7 +9,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content
+  [fullscreen]="true"
+  *ngIf="realtimeWeather$|async as realtimeWeather"
+>
   <!-- TITLE -->
   <h4 class="location">Mesquita, Rio de Janeiro</h4>
 
@@ -20,7 +23,7 @@
       alt="partly_cloudy"
     />
     <h5>Partly Cloudy</h5>
-    <h1>28 °C</h1>
+    <h1>{{realtimeWeather.data.values.temperature}} °C</h1>
   </div>
 
   <!-- CARDS COM OS CORE LAYERS (TEMPERATURA, UMIDADE, VENTO ...) -->
@@ -41,7 +44,7 @@
       />
       <ion-card-header>
         <ion-card-title>UV Index</ion-card-title>
-        <ion-card-subtitle>Moderate</ion-card-subtitle>
+        <ion-card-subtitle>{{realtimeWeather.data.values.uvIndex}}</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
@@ -54,7 +57,7 @@
       />
       <ion-card-header>
         <ion-card-title>Humidity</ion-card-title>
-        <ion-card-subtitle>47%</ion-card-subtitle>
+        <ion-card-subtitle>{{realtimeWeather.data.values.humidity}}%</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
@@ -67,7 +70,7 @@
       />
       <ion-card-header>
         <ion-card-title>Feels Like</ion-card-title>
-        <ion-card-subtitle>29 °C</ion-card-subtitle>
+        <ion-card-subtitle>{{realtimeWeather.data.values.temperatureApparent}} °C</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
@@ -80,7 +83,7 @@
       />
       <ion-card-header>
         <ion-card-title>Wind</ion-card-title>
-        <ion-card-subtitle>3 km/h</ion-card-subtitle>
+        <ion-card-subtitle>{{realtimeWeather.data.values.windSpeed}} km/h</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
@@ -406,6 +409,39 @@
         <p>Now</p>
         <img src="../../assets/icon/V1_icons/color/clear_day.svg" alt="" />
         <p>7°</p>
+      </div>
+      <div class="info">
+        <p>8 AM</p>
+        <img src="../../assets/icon/V1_icons/color/clear_night.svg" alt="" />
+        <p>17°</p>
+      </div>
+      <div class="info">
+        <p>9 AM</p>
+        <img src="../../assets/icon/V1_icons/color/cloudy.svg" alt="" />
+        <p>27°</p>
+      </div>
+      <div class="info">
+        <p>10 AM</p>
+        <img src="../../assets/icon/V1_icons/color/drizzle.svg" alt="" />
+        <p>37°</p>
+      </div>
+      <div class="info">
+        <p>11 AM</p>
+        <img src="../../assets/icon/V1_icons/color/flurries.svg" alt="" />
+        <p>47°</p>
+      </div>
+      <div class="info">
+        <p>12 PM</p>
+        <img src="../../assets/icon/V1_icons/color/fog.svg" alt="" />
+        <p>57°</p>
+      </div>
+      <div class="info">
+        <p>13 PM</p>
+        <img
+          src="../../assets/icon/V1_icons/color/freezing_drizzle.svg"
+          alt=""
+        />
+        <p>67°</p>
       </div>
       <div class="info">
         <p>8 AM</p>

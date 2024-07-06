@@ -10,10 +10,10 @@ Weather Forecast App é um aplicativo de previsão do tempo desenvolvido com Ion
 
 ## Recursos
 
-- [ ] Previsão do tempo atual
+- [x] Integração com API de previsão do tempo
+- [x] Previsão do tempo atual
 - [ ] Previsão para os próximos 7 dias
 - [ ] Busca de cidades por nome
-- [ ] Integração com API de previsão do tempo
 
 ## Requisitos
 
