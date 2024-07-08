@@ -1,38 +1,45 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import {
-  tap
-} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RealtimeWeather } from '../models/weather.model';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
-  constructor(
-    private _http: HttpClient,
-  ) {}
+  constructor(private _http: HttpClient) {}
 
-  public fetchTimelinesData(coordinates?: any) {
-    let params = `location=${localStorage.getItem('position')}`;
-    params += `&timesteps=1h`;
-    params += `&units=metric`;
-    params += `&endTime=${moment().add(1, 'hours').toISOString()}`;
-    params += `&fields=windDirection&fields=humidity&fields=temperature&fields=temperatureApparent&fields=windSpeed&fields=uvIndex`;
+  public realtimeWeather() {
+    let params = `location=${localStorage.getItem('coords')}`;
     params += `&apikey=${environment.apiKey}`;
-
-    return this._http.get<any>(`${environment.baseUrl}/timelines?${params}`).pipe(
-      tap(res=>console.log('foi mesmo:', res))
+    return this._http.get<RealtimeWeather>(
+      `${environment.baseUrl}/weather/realtime?${params}`
     );
   }
 
-  public realtimeWeather (){
-    // https://api.tomorrow.io/v4/weather/realtime?location=toronto&apikey=hRie3U91ibFYyJIZHZ7gWzqsGkBqhUKV', options)
-    let params = `location=${localStorage.getItem('position')}`;
-    params += `&apikey=${environment.apiKey}`
-    
-    return this._http.get<RealtimeWeather>(`${environment.baseUrl}/weather/realtime?${params}`);
-  } 
+  public fetchTimelinesWeekData(coordinates?: any) {
+    let params = `location=${localStorage.getItem('coords')}`;
+    params += `&timesteps=1d`;
+    params += `&units=metric`;
+    params += `&endTime=${moment().add(5, 'day').toISOString()}`;
+    params += `&fields=weatherCode&fields=humidity&fields=temperatureMax&fields=temperatureMin`;
+    params += `&apikey=${environment.apiKey}`;
+    return this._http.get<any>(`${environment.baseUrl}/timelines?${params}`).pipe(
+      map(res =>
+        res.data.timelines[0].intervals
+      )
+    );
+  }
+
+  public fetchTimelinesData(coordinates?: any) {
+    let params = `location=${localStorage.getItem('coords')}`;
+    params += `&timesteps=1h`;
+    params += `&units=metric`;
+    params += `&endTime=${moment().add(1, 'day').toISOString()}`;
+    params += `&fields=windDirection&fields=humidity&fields=temperature&fields=temperatureApparent&fields=windSpeed&fields=uvIndex`;
+    params += `&apikey=${environment.apiKey}`;
+    return this._http.get<any>(`${environment.baseUrl}/timelines?${params}`);
+  }
 }

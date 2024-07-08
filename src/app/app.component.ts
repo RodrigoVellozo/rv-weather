@@ -15,6 +15,6 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.locationService.getPosition().subscribe(position => localStorage.setItem('position',position));
+    this.locationService.getCurrentLoaction().then(position => localStorage.setItem('coords',position!));
   }
 }

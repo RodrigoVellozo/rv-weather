@@ -10,21 +10,21 @@ import {
   IonContent,
   IonHeader,
   IonIcon,
+  IonItem, IonLabel,
+  IonList,
   IonTitle,
-  IonToolbar, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
+  IonToolbar, IonFab, IonFabButton } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { menuOutline, notificationsOutline } from 'ionicons/icons';
 import { WeatherService } from '../core/services/weather.service';
-import { LocationService } from '../core/services/location.service';
-import { Observable, map, switchMap, tap } from 'rxjs';
-import { RealtimeWeather } from '../core/models/weather.model';
+import { Geolocation, PositionOptions } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonItem, IonList, 
+  imports: [IonFabButton, IonFab, IonLabel, IonItem, IonList, 
     CommonModule,
     IonCardSubtitle,
     IonCardTitle,
@@ -44,9 +44,10 @@ export class HomePage implements OnInit {
   private readonly _weatherService = inject(WeatherService);
   
   public intervals: any;
-  public forecast: any;
-  
   public realtimeWeather$ = this._weatherService.realtimeWeather();
+  public timelines$ = this._weatherService.fetchTimelinesData() ;
+  public timelinesWeek$ = this._weatherService.fetchTimelinesWeekData() ;
+  
 
   constructor() {
     addIcons({ menuOutline, notificationsOutline });
@@ -55,4 +56,9 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     console.log()
   }
+
+  public removeDecimals(value: number){
+    return Math.trunc(value);
+  }
+
 }
