@@ -12,7 +12,7 @@ O aplicativo usa a API do [Tomorrow.io](https://docs.tomorrow.io/reference/intro
 <img src="./src/assets/icon/powered-by-tomorrow/Powered_by_Climacell-Halo.svg" width="200">
 
 ## Demo
-
+t
 
 ## Recursos
 
