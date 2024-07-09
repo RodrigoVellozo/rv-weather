@@ -2,17 +2,18 @@
   <ion-toolbar class="ion-padding-start ion-padding-end ion-padding-top">
     <ion-icon name="menu-outline" slot="start"></ion-icon>
     <ion-title class="ion-padding-top"> Weather </ion-title>
-    <span slot="end">
-      <ion-icon name="notifications-outline"></ion-icon>
-      <ion-badge>&nbsp;</ion-badge>
-    </span>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ng-container *ngIf="realtimeWeather$| async as realtime">
     <!-- TITLE -->
-    <h4 class="location">{{realtime.location.name}}</h4>
+    <h3 class="location">
+      <ng-container *ngIf="realtime.location.name; else elseTemplate">
+        {{realtime.location.name}}
+      </ng-container>
+      <ng-template #elseTemplate> Unknown place </ng-template>
+    </h3>
 
     <!-- REALTIME WEATHER -->
     <div class="main-info">
@@ -92,42 +93,13 @@
           >
         </ion-card-header>
       </ion-card>
-
-      <!-- OLD CARDS -->
-      <!-- <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Humidity</h5>
-        <h3>58%</h3>
-      </div>
-    </ion-card>
-
-    <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Rain</h5>
-        <h3>10%</h3>
-      </div>
-    </ion-card>
-
-    <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Feels like</h5>
-        <h3>5°</h3>
-      </div>
-    </ion-card>
-
-    <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Humidity</h5>
-        <h3>58%</h3>
-      </div>
-    </ion-card> -->
     </div>
   </ng-container>
 
   <!-- FORECAST -->
   <div *ngIf="timelinesWeek$ | async as weeks">
-    <ion-card class="ion-padding" >
-      <ion-list >
+    <ion-card class="ion-padding">
+      <ion-list>
         <ion-item *ngFor="let week of weeks">
           <ion-label>{{week.startTime | date:'EEEE'}}</ion-label>
           <div
@@ -163,254 +135,16 @@
               />
             </ion-label>
 
-            <ion-label>{{removeDecimals(week.values.temperatureMax)}} °</ion-label>
-            <ion-label>{{removeDecimals(week.values.temperatureMin)}} °</ion-label>
+            <ion-label
+              >{{removeDecimals(week.values.temperatureMax)}} °</ion-label
+            >
+            <ion-label
+              >{{removeDecimals(week.values.temperatureMin)}} °</ion-label
+            >
           </div>
         </ion-item>
-<!-- 
-        <ion-item>
-          <ion-label>Monday</ion-label>
-          <div
-            style="
-              display: flex;
-              width: 70%;
-              justify-content: space-around;
-              align-items: center;
-            "
-          >
-            <ion-label style="display: flex">
-              <img
-                src="../../assets/icon/humidity.png"
-                alt="humidity"
-                width="20"
-              />
-              <span> 10% </span>
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_day.svg"
-                alt="day"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_night.svg"
-                alt="night"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>30 C</ion-label>
-            <ion-label>18 C</ion-label>
-          </div>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Tuesday</ion-label>
-          <div
-            style="
-              display: flex;
-              width: 70%;
-              justify-content: space-around;
-              align-items: center;
-            "
-          >
-            <ion-label style="display: flex">
-              <img
-                src="../../assets/icon/humidity.png"
-                alt="humidity"
-                width="20"
-              />
-              <span> 10% </span>
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_day.svg"
-                alt="day"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_night.svg"
-                alt="night"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>30 C</ion-label>
-            <ion-label>18 C</ion-label>
-          </div>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Wednesday</ion-label>
-          <div
-            style="
-              display: flex;
-              width: 70%;
-              justify-content: space-around;
-              align-items: center;
-            "
-          >
-            <ion-label style="display: flex">
-              <img
-                src="../../assets/icon/humidity.png"
-                alt="humidity"
-                width="20"
-              />
-              <span> 10% </span>
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_day.svg"
-                alt="day"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_night.svg"
-                alt="night"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>30 C</ion-label>
-            <ion-label>18 C</ion-label>
-          </div>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Thursday</ion-label>
-          <div
-            style="
-              display: flex;
-              width: 70%;
-              justify-content: space-around;
-              align-items: center;
-            "
-          >
-            <ion-label style="display: flex">
-              <img
-                src="../../assets/icon/humidity.png"
-                alt="humidity"
-                width="20"
-              />
-              <span> 10% </span>
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_day.svg"
-                alt="day"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_night.svg"
-                alt="night"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>30 C</ion-label>
-            <ion-label>18 C</ion-label>
-          </div>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Friday</ion-label>
-          <div
-            style="
-              display: flex;
-              width: 70%;
-              justify-content: space-around;
-              align-items: center;
-            "
-          >
-            <ion-label style="display: flex">
-              <img
-                src="../../assets/icon/humidity.png"
-                alt="humidity"
-                width="20"
-              />
-              <span> 10% </span>
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_day.svg"
-                alt="day"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>
-              <img
-                src="../../assets/icon/V1_icons/color/clear_night.svg"
-                alt="night"
-                width="20"
-              />
-            </ion-label>
-
-            <ion-label>30 C</ion-label>
-            <ion-label>18 C</ion-label>
-          </div>
-        </ion-item> -->
       </ion-list>
     </ion-card>
-
-    <!-- <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Today</h5>
-      </div>
-    </ion-card>
-
-    <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Sat 22</h5>
-      </div>
-    </ion-card>
-
-    <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Sun 23</h5>
-      </div>
-    </ion-card>
-
-    <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Mon 24</h5>
-      </div>
-    </ion-card>
-
-    <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Tue 25</h5>
-      </div>
-    </ion-card>
-
-    <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Wed 26</h5>
-      </div>
-    </ion-card>
-
-    <ion-card class="ion-padding">
-      <div class="info">
-        <h5>Thu 27</h5>
-      </div>
-    </ion-card> -->
   </div>
 
   <!-- TIMELINES -->
